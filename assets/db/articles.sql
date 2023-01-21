@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Jan 20, 2023 at 11:54 PM
+-- Generation Time: Jan 21, 2023 at 11:11 PM
 -- Server version: 5.7.36
 -- PHP Version: 8.1.0
 
@@ -36,51 +36,14 @@ CREATE TABLE IF NOT EXISTS `articles` (
   `author` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `categorie` (`categorie`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 
 --
--- Table structure for table `categories`
+-- Dumping data for table `articles`
 --
 
-DROP TABLE IF EXISTS `categories`;
-CREATE TABLE IF NOT EXISTS `categories` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `categories`
---
-
-INSERT INTO `categories` (`id`, `name`) VALUES
-(1, 'Artificial intelligence and machine learning'),
-(2, 'Internet of Things (IoT)'),
-(3, 'Cloud computing'),
-(4, 'Big data and analytics'),
-(5, 'Cybersecurity'),
-(6, 'Virtual and augmented reality'),
-(7, '5G networks'),
-(8, 'Blockchain'),
-(9, 'Robotics and drones'),
-(10, 'Biotechnology and genetic engineering');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `users`
---
-
-DROP TABLE IF EXISTS `users`;
-CREATE TABLE IF NOT EXISTS `users` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `username` varchar(255) DEFAULT NULL,
-  `email` varchar(255) DEFAULT NULL,
-  `password` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+INSERT INTO `articles` (`id`, `title`, `article`, `categorie`, `author`) VALUES
+(2, 'fa', 'Excepteur consectetu', 1, 'Maxime accusantium s');
 
 --
 -- Constraints for dumped tables
