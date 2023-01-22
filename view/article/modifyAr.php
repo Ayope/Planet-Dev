@@ -1,5 +1,11 @@
 <?php
     include_once "../../script/article/modifyAr.php";
+
+    session_start();
+    
+    if(!isset($_SESSION['name'])){
+        header('location: ../../index.php');
+    }
 ?>
 
 <!DOCTYPE html>
@@ -50,3 +56,4 @@
         </div>
         
     </form>
+</body>

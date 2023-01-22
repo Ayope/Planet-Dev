@@ -17,16 +17,17 @@ class Article{
 
     public function addArticle(){
         $db = new DbConnect();
-
-        $sql = "INSERT INTO articles (title, article, author, categorie) 
-        VALUES ('$this->title', '$this->article', '$this->author', '$this->category');";
-        $exec = $db->connect_pdo()->query($sql);
-
-        if($exec){
-            return "ok";
-        }else{
-            return "data not inserted"; //Do it in an alert
+        foreach($this->title as $key => $value){
+            $sql = "INSERT INTO articles (title, article, author, categorie) 
+            VALUES ('".$value."', '".$this->article[$key]."', '".$this->author[$key]."', '".$this->category[$key]."');";
+            $exec = $db->connect_pdo()->query($sql);
         }
+        
+        // if($exec){
+        //     return "ok";
+        // }else{
+        //     return "data not inserted"; //Do it in an alert
+        // }
     }
 
     public static function getArticle(){ 
@@ -100,7 +101,11 @@ class Article{
             $data = $exec->rowCount();
             return $data; 
         } else if($param == 'users'){
-            // Select from the table of users
+            $sql = "SELECT * FROM users";
+            $exec = $db->connect_pdo()->query($sql);
+
+            $data = $exec->rowCount();
+            return $data; 
         }
     }
 }

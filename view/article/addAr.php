@@ -1,3 +1,11 @@
+<?php 
+    session_start();
+    
+    if(!isset($_SESSION['name'])){
+        header('location: ../../index.php');
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,40 +17,48 @@
     <title>Add Article</title>
 </head>
 <body>
-    <form action="../../script/article/addAr.php" method="post">
-        <div class= "mx-5  my-5 w-75 d-flex flex-column form-control">
-            <div class="d-flex flex-column mb-3">
-                <label for="title">title</label>
-                <input type="text" name="title">
-            </div>
-            
-            <div class="d-flex flex-column mb-3">
-                <label for="article">article</label>
-                <textarea name="article" cols="30" rows="10"></textarea>
-            </div>
-            
-            <div class="d-flex flex-column mb-3">
-                <label for="author">author</label>
-                <input type="text" name="author">
-            </div>
-            
-            <div class="d-flex flex-column mb-3">
-                <label for="category">category</label>
-                <select name="category">
-                    <?php 
-                        include_once "../../script/article/getCatego.php";
-                        foreach($data as $row):
-                    ?>
-                    <option value="<?= $row['id']?>"><?= $row['name']?></option>
-                    <?php endforeach; ?>
-                </select>
+    <form action="../../script/article/addAr.php" method="post" id="form" class="container">
+        <div id="allForms">
+            <div class="d-flex flex-column form-control my-3" id="inputs">
+                <div class="d-flex flex-column mb-3">
+                    <label for="title">title</label>
+                    <input type="text" name="title[]" class="form-control">
+                </div>
+                
+                <div class="d-flex flex-column mb-3">
+                    <label for="article">article</label>
+                    <textarea name="article[]" cols="30" rows="10"  class="form-control"></textarea>
+                </div>
+                
+                <div class="d-flex flex-column mb-3">
+                    <label for="author">author</label>
+                    <input type="text" name="author[]" required class="form-control">
+                </div>
+                
+                <div class="d-flex flex-column mb-3">
+                    <label for="category">category</label>
+                    <select name="category[]" class="form-control">
+                        <?php 
+                            include_once "../../script/article/getCatego.php";
+                            foreach($data as $row):
+                        ?>
+                        <option value="<?= $row['id']?>"><?= $row['name']?></option>
+                        <?php endforeach; ?>
+                    </select>
+                </div>
             </div>
 
-
-            <button class="btn btn-primary d-flex justify-content-center" type="submit">Submit</button>
+            <center>
+                <a class="btn btn-secondary" onclick="addArticle()">Add Another Article</a>
+            </center>
         </div>
-        
+
+        <center>
+            <button class="btn btn-primary d-flex justify-content-center my-3" type="submit">Submit</button>
+        </center>
     </form>
 
+
+    <script src="../../assets/js/main.js"></script>
 </body>
 </html>

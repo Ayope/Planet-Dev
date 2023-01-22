@@ -1,6 +1,15 @@
 <?php
     include_once "../../script/article/getAr.php";
     include_once "../../script/article/getStats.php";
+
+    
+    session_start();
+    
+    if(!isset($_SESSION['name'])){
+        header('location: ../../index.php');
+    }
+
+    echo $_SESSION['name'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
