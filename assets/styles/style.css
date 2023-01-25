@@ -1,0 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=Sofia+Sans:wght@300&display=swap');
+
+
+body{
+    background-color: #172f1e; 
+    font-family: 'Sofia Sans', sans-serif;
+}
+
+div.dataTables_wrapper div.dataTables_length select{
+    color: white;
+}
+
+div.dataTables_wrapper div.dataTables_filter input{
+    color: white;
+}
+
+div.dataTables_wrapper div.dataTables_length select option{
+    color: black;
+}

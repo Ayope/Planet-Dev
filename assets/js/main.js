@@ -1,3 +1,17 @@
+let article = document.querySelectorAll(".article") ;
+
+function Ellipsif (str) {
+    if (str.length > 30) {
+        return (str.substring(0, 30) + "...");
+    }
+    else {
+        return str;
+    }
+}
+for(let i = 0 ; i < article.length ; i++){
+    article[i].innerText = Ellipsif(article[i].innerHTML);
+}
+
 function SendId(id){
     document.getElementById('id').setAttribute('value', id);
 }
@@ -31,3 +45,16 @@ function addArticle(){
     form.appendChild(inputsCopy);
 
 }
+
+const alertBtn = document.querySelector(".btn-close");
+
+document.addEventListener("DOMContentLoaded", function() {
+    alertBtn.addEventListener("click", function close(){
+        this.parentElement.remove();
+    });
+
+    setTimeout(function() {
+        alertBtn.parentElement.remove();
+    }, 5000);
+});
+

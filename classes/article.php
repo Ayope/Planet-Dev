@@ -17,17 +17,11 @@ class Article{
 
     public function addArticle(){
         $db = new DbConnect();
-        foreach($this->title as $key => $value){
-            $sql = "INSERT INTO articles (title, article, author, categorie) 
-            VALUES ('".$value."', '".$this->article[$key]."', '".$this->author[$key]."', '".$this->category[$key]."');";
-            $exec = $db->connect_pdo()->query($sql);
-        }
-        
-        // if($exec){
-        //     return "ok";
-        // }else{
-        //     return "data not inserted"; //Do it in an alert
-        // }
+            
+        $sql = "INSERT INTO articles (title, article, author, categorie) 
+        VALUES (?, ?, ?, ?)";
+        $stmt = $db->connect_pdo()->prepare($sql);
+        $stmt->execute(array($this->title, $this->article, $this->author, $this->category));
     }
 
     public static function getArticle(){ 
@@ -42,10 +36,10 @@ class Article{
         return $data;
     }
 
-    public static function getArticleToModify($id){
+    public static function getSpecData($id){
         $db = new DbConnect();
 
-        $sql = "SELECT * FROM articles WHERE id = '$id'";
+        $sql = "SELECT * FROM articles, categories WHERE articles.id = '$id' and categories.id = articles.categorie;";
         $exec = $db->connect_pdo()->query($sql);
         $data = $exec->fetch();
 
@@ -55,15 +49,11 @@ class Article{
     public static function modifyArticle($id, $title, $article, $author, $categorie){
         $db = new DbConnect();
 
-        $sql = "UPDATE `articles` SET `title`='$title',`article`='$article',`categorie`='$categorie',`author`='$author' 
-        WHERE id = '$id';";
-        $exec = $db->connect_pdo()->query($sql);
-        
-        if($exec){
-            return "ok";
-        }else{
-            return "data not updated"; //Do it in an alert
-        }
+        $sql = "UPDATE articles SET title= ?, article= ? ,categorie= ? ,author= ? 
+        WHERE id =  ?;";
+        $stmt = $db->connect_pdo()->prepare($sql);
+        $stmt->execute(array($title, $article, $categorie, $author, $id));
+
     }
 
     public static function deleteArticle($id){
